@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed description="Raw feed" name="raw-data-feed"
+      xmlns="uri:falcon:feed:0.1">
+
+    <tags>owner=raw-wh,producer=wh-pipeline,category=click-logs</tags>
+    <groups>capone</groups>
+
+    <frequency>hours(1)</frequency>
+
+    <clusters>
+        <cluster name="primary-cluster" type="source">
+            <validity start="2014-01-14T00:00Z" end="2014-01-31T00:00Z"/>
+            <retention limit="days(30)" action="delete"/>
+        </cluster>
+
+    </clusters>
+
+    <table uri="catalog:source_db:raw_input_table#ds=${YEAR}-${MONTH}-${DAY}-${HOUR}" />
+
+    <ACL owner="hue" group="users" permission="0755"/>
+    <schema location="hcat" provider="hcat"/>
+</feed>

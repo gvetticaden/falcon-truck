@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<!--
+    BCP cluster configuration for demo vm
+  -->
+<cluster colo="east-coast" description="BCP Cluster"
+         name="bcp-cluster"
+         xmlns="uri:falcon:cluster:0.1">
+
+    <interfaces>
+        
+        <interface type="readonly" endpoint="hdfs://172.16.215.140:8080" version="2.2.0"/>
+        <interface type="write" endpoint="hdfs://172.16.215.140:8020" version="2.2.0"/>
+        <interface type="execute" endpoint="172.16.215.140:8050" version="2.2.0"/>
+        <interface type="workflow" endpoint="http://172.16.215.140:11000/oozie/" version="4.0.0"/> 
+	<interface type="registry" endpoint="thrift://172.16.215.140:9083" version="0.11.0"/>
+        <interface type="messaging" endpoint="tcp://172.16.215.140:61616?daemon=true" version="5.4.3"/>
+    </interfaces>
+
+    <locations>
+        <location name="staging" path="/apps/falcon/sandbox-dr/staging"/>
+        <location name="working" path="/apps/falcon/sandbox-dr/working"/>
+        <location name="temp" path="/tmp"/>
+    </locations>
+
+</cluster>

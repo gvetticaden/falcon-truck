@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+      A feed representing Hourly customer email data retained for 90 days
+       -->
+<feed description="Truck Events Raw feed" name="truck-events-raw-data-feed"
+    xmlns="uri:falcon:feed:0.1">
+
+	    
+    <tags>owner=raw-wh,producer=wh-pipeline,category=truck-events</tags>
+    <groups>analytics/groups>    
+    <frequency>hours(1)</frequency>
+    <clusters>
+    	<cluster name="primary-cluster" type="source">
+        <validity start="2014-06-27T00:00Z" end="2016-03-31T00:00Z"/>
+        <retention limit="days(90)" action="delete"/>
+    	</cluster>
+    </clusters>
+
+    <locations>
+            <location type="data"
+            	path="/user/ambari-qa/falcon/demo/primary/input/enron/${YEAR}-${MONTH}-${DAY}-${HOUR}"/>
+            <location type="stats" path="/none"/>
+            <location type="meta" path="/none"/>
+    </locations>
+
+    <ACL owner="hdfs" group="hadoop" permission="0755"/>
+    <schema location="/none" provider="none"/>
+</feed>

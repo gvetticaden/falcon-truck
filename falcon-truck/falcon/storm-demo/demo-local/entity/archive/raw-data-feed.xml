@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+         A feed representing Hourly raw data dump with retention.
+-->
+<feed description="Truck Events Raw feed" name="truck-events-raw-data-feed"
+      xmlns="uri:falcon:feed:0.1">
+
+    <tags>owner=raw-wh,producer=wh-pipeline,category=truck-events</tags>
+    <groups>analytics/groups>
+
+    <frequency>hours(1)</frequency>
+
+    <clusters>
+    	<cluster name="primary-cluster" type="source">
+        <validity start="2014-06-27T00:00Z" end="2015-01-31T00:00Z"/>
+        <retention limit="days(30)" action="delete"/>
+    	</cluster>
+
+    </clusters>
+    	<table uri="catalog:default:truck_events_text_partition#date=${YEAR}-${MONTH}-${DAY};hour=${HOUR}" />
+</feed>
